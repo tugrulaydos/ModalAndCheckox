@@ -1,0 +1,107 @@
+﻿
+
+@model List<Employer>
+
+<div class="container">
+    <div class="row mt-1">
+
+        <div class="col">
+
+            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
+                
+                Aç2
+
+
+            </button>
+
+            <div class="modal fade" tabindex="-1" id="myModal"
+                 aria-labelledby="Exitlabel" aria-hidden="true"
+                 data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg
+                 modal-fullscreen-sm-down">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="ExitLabel">Lütfen seçtiğiniz adayları göndermek istediğiniz mail adreslerini seçiniz.</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="kapat"></button>
+
+                        </div>
+                        <div class="modal-body px-4">
+
+                            <form>
+                                <div class="container">                                  
+
+                                    <div class="row">
+                                        <div class="col">
+
+                                            <div class="card" style="width: auto;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Send Me</h5>
+                                                    <input type="checkbox"  checked name="IDs" value="@Model.ElementAt(0).Id" />
+                                                    <label for="@Model.ElementAt(0).Name (@Model.ElementAt(0).Email)">@Model.ElementAt(0).Name (@Model.ElementAt(0).Email)</label><br>
+                                                </div>
+                                            </div>
+
+                                        </div>
+
+                                        <div class="col">
+
+                                            <div class="card" style="width: auto;">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Send My Contacts</h5>
+                                                    <input type="checkbox" name="IDs" checked value="@Model.ElementAt(1).Id" />
+                                                    <label for="">@Model.ElementAt(1).Name (@Model.ElementAt(1).Email)</label><br>
+
+                                                    <input type="checkbox" name="IDs" checked value="@Model.ElementAt(2).Id" />
+                                                    <label for="">@Model.ElementAt(2).Name (@Model.ElementAt(2).Email)</label><br>
+
+                                                    <input type="checkbox" name="IDs" checked value="@Model.ElementAt(3).Id" />
+                                                    <label for="">@Model.ElementAt(3).Name (@Model.ElementAt(3).Email)</label><br>
+
+                                                    <input type="checkbox" name="IDs" checked value="@Model.ElementAt(4).Id" />
+                                                    <label for="">@Model.ElementAt(4).Name (@Model.ElementAt(4).Email)</label><br>
+
+                                                    <input type="checkbox" name="IDs" checked value="@Model.ElementAt(5).Id" />
+                                                    <label for="">@Model.ElementAt(5).Name (@Model.ElementAt(5).Email)</label><br>
+
+                                                    <input type="checkbox" name="IDs" checked value="@Model.ElementAt(6).Id" />
+                                                    <label for="">@Model.ElementAt(6).Name (@Model.ElementAt(6).Email)</label><br>
+
+
+                                                </div>
+                                            </div>
+
+
+                                        </div>
+
+                                    </div>                             
+
+
+                                </div>
+
+                            </form>
+                           
+
+                            
+
+
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">İptal</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Onayla</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script>
+        //let myModal1 = new bootstrap.Modal(document.querySelector("#myModal"));
+        //myModal1.show();
+    </script>
+
+}
+
