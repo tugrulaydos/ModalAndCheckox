@@ -1,0 +1,59 @@
+﻿
+@{
+    ViewData["Title"] = "StudentInfo";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<h1>StudentInfo</h1>
+
+
+<div>
+    <input type="text" id="StudentID" />
+    <br />
+    <input type="submit" id="btnSend" />
+</div>
+<div>
+    <p>Student Name : <strong id="stdname"></strong></p>
+    <p>Student Surname : <strong id="stdsurname"></strong></p>
+    <p>Student Number : <strong id="stdnumber"></strong></p>
+    <p>Student Age : <strong id="stdage"></strong></p>
+    <p>Student City : <strong id="stdcity"></strong></p>
+</div>
+
+<script>
+
+    $(document).ready(function()
+    {
+        $("#btnSend").click(function()
+        {      
+            var ID = $("#StudentID").val();
+            
+            $.ajax({
+                url:'/Home/StudentAjax',
+                type:'POST',
+                dataType:'json',
+                data:{ID:ID},
+                
+                success:function(data){
+                    debugger;
+                    $("#stdname").html(data.name),
+                    $("#stdsurname").html(data.surname),
+                    $("#stdage").html(data.age),
+                    $("#stdnumber").html(data.studentNumber),
+                    $("#stdcity").html(data.city)
+
+                    
+                }
+
+            });
+
+        });
+
+    });
+
+
+
+</script>
+
+
