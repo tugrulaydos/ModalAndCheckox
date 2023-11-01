@@ -37,8 +37,9 @@ namespace ModalAndCheckox.Controllers
         }
 
         [HttpPost]
-        public JsonResult StudentAjax(AjaxModel ajaxModel)
+        public IActionResult StudentInfo(int ID)
         {
+            //StudenInfo'nun Index'inde Tetiklenen Ajax.
             List<Student> Students = new List<Student>
             {
                 new Student{Id=1,Name="John",Surname="Doe",Age=22,City="London",StudentNumber=1171},
@@ -48,9 +49,21 @@ namespace ModalAndCheckox.Controllers
                 new Student{Id=5,Name="Elton",Surname="John",Age=23,City="Stockholm",StudentNumber=535},
             };
 
-            Student std = Students.Where(x => x.Id == ajaxModel.ID).First();
+            Student std = Students.Where(x => x.Id == ID).FirstOrDefault();        
 
-            return Json(std);
+            if (std != null)
+            {
+
+                return Json(new {isSuccess=true, std});
+            }
+            else
+            {
+               
+                return Json(new {isSuccess=false});
+            }
+           
+
+            
 
         }
 

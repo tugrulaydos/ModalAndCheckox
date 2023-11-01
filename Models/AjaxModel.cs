@@ -2,6 +2,9 @@
 {
     public class AjaxModel
     {
-        public int ID { get; set; }
+        public Student Students { get;set; }
+
+        public bool isSuccess { get;set; }
+        
     }
 }

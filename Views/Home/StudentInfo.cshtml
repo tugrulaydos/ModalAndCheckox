@@ -5,6 +5,7 @@
 }
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <h1>StudentInfo</h1>
 
 
@@ -30,18 +31,33 @@
             var ID = $("#StudentID").val();
             
             $.ajax({
-                url:'/Home/StudentAjax',
+                url:'/Home/StudentInfo',
                 type:'POST',
                 dataType:'json',
                 data:{ID:ID},
-                
+               
                 success:function(data){
-                    debugger;
-                    $("#stdname").html(data.name),
-                    $("#stdsurname").html(data.surname),
-                    $("#stdage").html(data.age),
-                    $("#stdnumber").html(data.studentNumber),
-                    $("#stdcity").html(data.city)
+                    console.log(data);
+                    if(data.isSuccess)
+                    {
+                        $("#stdname").html(data.std.name),
+                        $("#stdsurname").html(data.std.surname),
+                        $("#stdage").html(data.std.age),
+                        $("#stdnumber").html(data.std.studentNumber),
+                        $("#stdcity").html(data.std.city)
+
+                    }
+                    else
+                    {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Oops...',
+                            text: 'Böyle Bir Öğrenci Bulunamadı!',
+                            footer: 'Lütfen başka ID değerleriyle arama yapınız'
+                        })
+
+                    }
+               
 
                     
                 }
