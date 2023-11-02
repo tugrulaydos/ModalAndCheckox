@@ -22,6 +22,13 @@ namespace ModalAndCheckox.Controllers
             return View();
         }
 
+        [HttpPost]
+        public IActionResult Index([FromBody]UserAjaxModel userdata)
+        {
+            return null;
+
+        }
+
         public IActionResult Privacy()
         {
             List<Employer> employers = DataProvider.GetAllEmployer();

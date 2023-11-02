@@ -2,6 +2,10 @@
 
 @model List<Employer>
 
+
+
+
+
 <div class="container">
     <div class="row mt-1">
 
@@ -34,10 +38,25 @@
                                         <div class="col">
 
                                             <div class="card" style="width: auto;">
-                                                <div class="card-body">
+                                                <div class="card-body card-bodyscale">
                                                     <h5 class="card-title">Send Me</h5>
-                                                    <input type="checkbox" class="form-check-input"  checked name="IDs" value="@Model.ElementAt(0).Id" id="NameCheckBox" />
-                                                    <label for="NameCheckBox">@Model.ElementAt(0).Name (@Model.ElementAt(0).Email)</label><br>
+                                                    <div class="row">
+
+                                                        <div class="col-1">
+                                                            <input type="checkbox" class="form-check-input" checked name="IDs" value="@Model.ElementAt(0).Id" id="NameCheckBox" />
+                                                        </div>
+
+                                                        <div class="col-11">
+                                                            <label for="NameCheckBox">@Model.ElementAt(0).Name (@Model.ElementAt(0).Email)</label><br>
+
+                                                        </div>
+
+
+
+                                                    </div>
+                                                    
+                                                   
+                                                   
                                                 </div>
                                             </div>
 
@@ -46,25 +65,66 @@
                                         <div class="col">
 
                                             <div class="card" style="width: auto;">
-                                                <div class="card-body">
+                                                <div class="card-body card-bodyscale">
                                                     <h5 class="card-title">Send My Contacts</h5>
-                                                    <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(1).Id" id="EmailCheckBox1" />
-                                                    <label for="EmailCheckBox1">@Model.ElementAt(1).Name (@Model.ElementAt(1).Email)</label><br>
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(1).Id" id="EmailCheckBox1" />
+                                                        </div>
 
-                                                    <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(2).Id" id="EmailCheckBox2" />
-                                                    <label for="EmailCheckBox2">@Model.ElementAt(2).Name (@Model.ElementAt(2).Email)</label><br>
+                                                        <div class="col-11">
+                                                            <label for="EmailCheckBox1">@Model.ElementAt(1).Name (@Model.ElementAt(1).Email)</label><br>
+                                                        </div>
 
-                                                    <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(3).Id" id="EmailCheckBox3" />
-                                                    <label for="EmailCheckBox3">@Model.ElementAt(3).Name (@Model.ElementAt(3).Email)</label><br>
+                                                    </div>
 
-                                                    <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(4).Id" id="EmailCheckBox4" />
-                                                    <label for="EmailCheckBox4">@Model.ElementAt(4).Name (@Model.ElementAt(4).Email)</label><br>
+                                                      <div class="row">
+                                                        <div class="col-1">
+                                                            <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(2).Id" id="EmailCheckBox2" />
+                                                        </div>
 
-                                                    <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(5).Id" id="EmailCheckBox5" />
-                                                    <label for="EmailCheckBox5">@Model.ElementAt(5).Name (@Model.ElementAt(5).Email)</label><br>
+                                                        <div class="col-11">
+                                                            <label for="EmailCheckBox2">@Model.ElementAt(2).Name (@Model.ElementAt(2).Email)</label>
+                                                        </div>
 
-                                                    <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(6).Id" id="EmailCheckBox6"/>
-                                                    <label for="EmailCheckBox6">@Model.ElementAt(6).Name (@Model.ElementAt(6).Email)</label><br>
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(3).Id" id="EmailCheckBox3" />
+                                                        </div>
+
+                                                        <div class="col-11">
+                                                            <label for="EmailCheckBox3">@Model.ElementAt(3).Name (@Model.ElementAt(3).Email)</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(4).Id" id="EmailCheckBox4" />
+                                                        </div>
+
+                                                        <div class="col-11">
+                                                            <label for="EmailCheckBox4">@Model.ElementAt(4).Name (@Model.ElementAt(4).Email)</label>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row">
+                                                        <div class="col-1">
+                                                            <input type="checkbox" name="IDs" class="form-check-input" checked value="@Model.ElementAt(5).Id" id="EmailCheckBox5" />
+                                                        </div>
+
+                                                        <div class="col-11">
+                                                            <label for="EmailCheckBox5">@Model.ElementAt(5).Name (@Model.ElementAt(5).Email)</label>
+                                                        </div>
+
+                                                    </div>                                         
+                                                 
+
+                                                    
+                                                    
 
 
                                                 </div>
@@ -96,12 +156,4 @@
     </div>
 </div>
 
-@section Scripts
-    {
-    <script>
-        //let myModal1 = new bootstrap.Modal(document.querySelector("#myModal"));
-        //myModal1.show();
-    </script>
-
-}
 

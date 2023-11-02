@@ -14,8 +14,7 @@
 
             <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
 
-                Aç
-
+                Open
 
             </button>
 
@@ -30,39 +29,24 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="kapat"></button>
 
                         </div>
-                        <div class="modal-body px-4">
-                           @* <div class="row">
-                                <div class="col-md-4 bg-info"> Lorem ipsum dolor sit amet 
-                                    consectetur adipisicing
-                                    elit. Rem, quaret
-                                </div>
-
-                                <div class="col-md-8 bg-warning">Lorem, ipsum dolor sit amet
-                                    consectetur udipisicing
-                                    elit. Possimus, consectetur.
-                                </div>
-
-                            </div>*@
+                        <div class="modal-body px-4">                      
 
                             <form>
-                                <div class="mb-3">
-                                    <label for="namelastname" class="col-form-label">Ad & soyad</label>
-                                    <input type="text" class="fomr-control" id="namelastname" />
-
+                                <div class="form-group">
+                                    <label for="sender-name" class="col-form-label">Name Surname</label>
+                                    <input type="text" class="form-control" id="sender-name">
                                 </div>
-                                <div class="mb-3">
-                                    <label for="message" class="col-form-label">Mesajınız</label>
-                                    <textarea class="form-control" id="message"></textarea>
+                                <div class="form-group">
+                                    <label for="message-text" class="col-form-label">Message:</label>
+                                    <textarea class="form-control" id="message-text"></textarea>
                                 </div>
-
-
                             </form>
 
                          
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">İptal</button>
-                            <button type="button" class="btn btn-success" data-bs-dismiss="modal">Onayla</button>
+                            <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
+                            <button type="button" class="btn btn-success" data-bs-dismiss="modal" id="btn-send">Send</button>
                         </div>
                     </div>
                 </div>
@@ -71,14 +55,44 @@
     </div>
 </div>
 
-@section Scripts
-{
-    <script>
-        //let myModal1 = new bootstrap.Modal(document.querySelector("#myModal"));
-        //myModal1.show();
-    </script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-}
+<script>
+
+    $(document).ready(function () {
+        debugger;
+        $("#btn-send").click(function () {
+            
+           var userdata = 
+           {
+               name:"12",
+               message:"12"
+           };
+                       
+
+            $.ajax({
+                url: '/Home/Index',
+                type: 'POST',
+                dataType: 'json',                
+                data: JSON.stringify(userdata),                
+
+                success: function (response) {                   
+                  
+
+
+
+                }
+
+            });
+
+        });
+
+    });
+
+
+
+</script>
 
 
 
