@@ -4,20 +4,30 @@ namespace ModalAndCheckox.Helper
 {
     public static class DataProvider
     {
-        public static List<Employer> GetAllEmployer()
+        public static List<Student> GetAllStudents()
         {
-            return new List<Employer>()
+            List<Student> Students = new List<Student>
             {
-                new Employer{Id=1,Name="JohnrLorem ipsum dolor sit amet, consectetur",SurName="Doe",Email="employer@gmail.com"},
-                new Employer{Id=2,Name="EsosarLorem ipsum dolor sit amet, consectetur",SurName="imbruglie",Email="b@gmail.com"},
-                new Employer{Id=3,Name="EspinozarLorem ipsum dolor sit amet, consectetur",SurName="Durhme",Email="c@gmail.com"},
-                new Employer{Id=4,Name="MarvinrLorem ipsum dolor sit amet, consectetur",SurName="Wagner",Email="d@gmail.com"},
-                new Employer{Id=5,Name="KristinarLorem ipsum dolor sit amet, consectetur",SurName="Arambasic",Email="e@gmail.com"},
-                new Employer{Id=6,Name="YusufrLorem ipsum dolor sit amet, consectetur",SurName="Esmer",Email="f@gmail.com"},
-                new Employer{Id=7,Name="DavisrLorem ipsum dolor sit amet, consectetur",SurName="Dathe",Email="g@gmail.com"},
+                new Student{Id=1,Name="John",Surname="Moltenbrace",Age=22,City="London",StudentNumber=1171},
+                new Student{Id=2,Name="Nancy",Surname="Davalio",Age=20,City="Paris",StudentNumber=1053},
+                new Student{Id=3,Name="Davis",Surname="Elfjumper",Age=21,City="Ankara",StudentNumber=1253},
+                new Student{Id=4,Name="Frank",Surname="Goldbow",Age=18,City="Amsterdam",StudentNumber=53},
+                new Student{Id=5,Name="Chelwaru",Surname="Fogspear",Age=23,City="Stockholm",StudentNumber=535},
+            };
+
+            return Students;
+        }
+
+        public static List<Teacher> GetAllTeahers() 
+        {
+            List<Teacher> Teachers = new List<Teacher>
+            {
+                new Teacher{Id=1,Name="Betcuth",Surname="Terravigor",Age=45,City="Ankara"},
+                new Teacher{Id=2,Name="Draric", Surname="Grayblood",Age=35,City="Istanbul"}
 
             };
 
+            return Teachers;
 
         }
     }

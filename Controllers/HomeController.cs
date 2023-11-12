@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ModalAndCheckox.Helper;
 using ModalAndCheckox.Models;
+using ModalAndCheckox.Views.ViewModals;
 using System.Diagnostics;
 using System.Security.Cryptography.X509Certificates;
 
@@ -17,7 +18,8 @@ namespace ModalAndCheckox.Controllers
 
         public IActionResult Index()
         {
-            List<Employer> employers = DataProvider.GetAllEmployer();
+            
+          
 
             return View();
         }
@@ -29,11 +31,50 @@ namespace ModalAndCheckox.Controllers
 
         }
 
-        public IActionResult Privacy()
+        [HttpGet]
+        public IActionResult StudentTeachers() 
         {
-            List<Employer> employers = DataProvider.GetAllEmployer();
+            var VM = new StudentTeacherVM();
 
-            return View(employers);
+            VM.students = DataProvider.GetAllStudents();
+            VM.teachers = DataProvider.GetAllTeahers();
+
+            return View(VM);
+
+        }
+
+        [HttpPost]
+        public IActionResult StudentTeachers([FromBody]StudentTeacherAjaxModel model)
+        {
+            var students = DataProvider.GetAllStudents().Where(x => model.studentIDs.Contains(x.Id)).ToList();
+            var teachers = DataProvider.GetAllTeahers().Where(x => model.teacherIDs.Contains(x.Id)).ToList();
+
+            if((students.Count()+teachers.Count()) <= 0) 
+            {
+                return Json(new { isSuccess = false });
+            }
+
+            StudentTeacherVM VM = new();
+
+            VM.students = students;
+            VM.teachers = teachers;
+
+          
+
+            return Json(new {isSuccess=true, value = VM});
+
+
+        }
+
+        public IActionResult Privacy()
+        {           
+
+            var VM = new StudentTeacherVM();
+
+            VM.students = DataProvider.GetAllStudents();
+            VM.teachers = DataProvider.GetAllTeahers();
+
+            return View(VM);
         }
 
         public IActionResult StudentInfo()
@@ -47,30 +88,28 @@ namespace ModalAndCheckox.Controllers
         public IActionResult StudentInfo(int ID)
         {
             //StudenInfo'nun Index'inde Tetiklenen Ajax.
-            List<Student> Students = new List<Student>
-            {
-                new Student{Id=1,Name="John",Surname="Doe",Age=22,City="London",StudentNumber=1171},
-                new Student{Id=2,Name="Nancy",Surname="Davalio",Age=20,City="Paris",StudentNumber=1053},
-                new Student{Id=3,Name="David",Surname="Davis",Age=21,City="Ankara",StudentNumber=1253},
-                new Student{Id=4,Name="Frank",Surname="Sinatra",Age=18,City="Amsterdam",StudentNumber=53},
-                new Student{Id=5,Name="Elton",Surname="John",Age=23,City="Stockholm",StudentNumber=535},
-            };
+            //List<Student> Students = new List<Student>
+            //{
+            //    new Student{Id=1,Name="John",Surname="Doe",Age=22,City="London",StudentNumber=1171},
+            //    new Student{Id=2,Name="Nancy",Surname="Davalio",Age=20,City="Paris",StudentNumber=1053},
+            //    new Student{Id=3,Name="David",Surname="Davis",Age=21,City="Ankara",StudentNumber=1253},
+            //    new Student{Id=4,Name="Frank",Surname="Sinatra",Age=18,City="Amsterdam",StudentNumber=53},
+            //    new Student{Id=5,Name="Elton",Surname="John",Age=23,City="Stockholm",StudentNumber=535},
+            //};
+
+            List<Student> Students = DataProvider.GetAllStudents();
 
             Student std = Students.Where(x => x.Id == ID).FirstOrDefault();        
 
             if (std != null)
             {
-
                 return Json(new {isSuccess=true, std});
             }
             else
-            {
-               
+            {               
                 return Json(new {isSuccess=false});
-            }
-           
-
-            
+            }           
+                        
 
         }
 

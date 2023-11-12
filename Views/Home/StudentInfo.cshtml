@@ -4,13 +4,13 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
 <h1>StudentInfo</h1>
 
 
 <div>
-    <input type="text" id="StudentID" />
+    <input type="text" placeholder="Please Write An ID" id="StudentID"/>
     <br />
     <input type="submit" id="btnSend" />
 </div>
@@ -22,54 +22,60 @@
     <p>Student City : <strong id="stdcity"></strong></p>
 </div>
 
-<script>
 
-    $(document).ready(function()
-    {
-        $("#btnSend").click(function()
-        {      
-            var ID = $("#StudentID").val();
-            
-            $.ajax({
-                url:'/Home/StudentInfo',
-                type:'POST',
-                dataType:'json',
-                data:{ID:ID},
-               
-                success:function(data){
-                    console.log(data);
-                    if(data.isSuccess)
-                    {
-                        $("#stdname").html(data.std.name),
-                        $("#stdsurname").html(data.std.surname),
-                        $("#stdage").html(data.std.age),
-                        $("#stdnumber").html(data.std.studentNumber),
-                        $("#stdcity").html(data.std.city)
+
+@section Scripts
+{
+  
+    <script>
+
+        $(document).ready(function () {
+            $("#btnSend").click(function () {
+                var ID = $("#StudentID").val();
+
+                $.ajax({
+                    url: '/Home/StudentInfo',
+                    type: 'POST',
+                    dataType: 'json',
+                    data: { ID: ID },
+
+                    success: function (data) {
+                        console.log(data);
+                        if (data.isSuccess) {
+                            $("#stdname").html(data.std.name),
+                                $("#stdsurname").html(data.std.surname),
+                                $("#stdage").html(data.std.age),
+                                $("#stdnumber").html(data.std.studentNumber),
+                                $("#stdcity").html(data.std.city)
+
+                        }
+                        else {
+                            Swal.fire({
+                                icon: 'error',
+                                title: 'Oops...',
+                                text: 'The student could not be found!',
+                                footer: 'Please search with different ID values'
+                            });
+
+                        }
+
+
 
                     }
-                    else
-                    {
-                        Swal.fire({
-                            icon: 'error',
-                            title: 'Oops...',
-                            text: 'Böyle Bir Öğrenci Bulunamadı!',
-                            footer: 'Lütfen başka ID değerleriyle arama yapınız'
-                        })
 
-                    }
-               
-
-                    
-                }
+                });
 
             });
 
         });
 
-    });
+
+
+    </script>
 
 
 
-</script>
 
+
+}
 
