@@ -17,19 +17,49 @@ namespace ModalAndCheckox.Controllers
         }
 
         public IActionResult Index()
-        {
-            
+        {            
           
-
             return View();
         }
 
         [HttpPost]
-        public IActionResult Index([FromBody]UserAjaxModel userdata)
+        public IActionResult Index(AddDataAjaxModel personinfo)
         {
-            return null;
+            if (personinfo.isStudent)
+            {
+                Student s1 = new()
+                {
+                    Id = personinfo.Id,
+                    Name = personinfo.Name,
+                    Surname = personinfo.Surname,
+                    Age = personinfo.Age,
+                    City = personinfo.City,
+                };
 
+                DataProvider.AddDataToStudentList(s1);
+                return Json(new { isSuccess = true });
+            }
+
+            if (!personinfo.isStudent) 
+            {
+                Teacher t1 = new()
+                {
+                    Id = personinfo.Id,
+                    Name = personinfo.Name,
+                    Surname = personinfo.Surname,
+                    Age = personinfo.Age,
+                    City = personinfo.City,
+                };
+
+                DataProvider.AddDataToTeacherList(t1);
+                return Json(new { isSuccess = true });
+            }
+
+
+            return Json(new { isSuccess = false });
         }
+
+    
 
         [HttpGet]
         public IActionResult StudentTeachers() 
@@ -47,56 +77,27 @@ namespace ModalAndCheckox.Controllers
         public IActionResult StudentTeachers([FromBody]StudentTeacherAjaxModel model)
         {
             var students = DataProvider.GetAllStudents().Where(x => model.studentIDs.Contains(x.Id)).ToList();
-            var teachers = DataProvider.GetAllTeahers().Where(x => model.teacherIDs.Contains(x.Id)).ToList();
-
-            if((students.Count()+teachers.Count()) <= 0) 
-            {
-                return Json(new { isSuccess = false });
-            }
+            var teachers = DataProvider.GetAllTeahers().Where(x => model.teacherIDs.Contains(x.Id)).ToList();           
 
             StudentTeacherVM VM = new();
 
             VM.students = students;
-            VM.teachers = teachers;
+            VM.teachers = teachers;          
 
-          
-
-            return Json(new {isSuccess=true, value = VM});
-
-
+            return Json(new {value = VM});
         }
-
-        public IActionResult Privacy()
-        {           
-
-            var VM = new StudentTeacherVM();
-
-            VM.students = DataProvider.GetAllStudents();
-            VM.teachers = DataProvider.GetAllTeahers();
-
-            return View(VM);
-        }
+      
 
         public IActionResult StudentInfo()
         {
-            //Burada Ajax kullanacağız.
+            
             return View();
 
         }
 
         [HttpPost]
         public IActionResult StudentInfo(int ID)
-        {
-            //StudenInfo'nun Index'inde Tetiklenen Ajax.
-            //List<Student> Students = new List<Student>
-            //{
-            //    new Student{Id=1,Name="John",Surname="Doe",Age=22,City="London",StudentNumber=1171},
-            //    new Student{Id=2,Name="Nancy",Surname="Davalio",Age=20,City="Paris",StudentNumber=1053},
-            //    new Student{Id=3,Name="David",Surname="Davis",Age=21,City="Ankara",StudentNumber=1253},
-            //    new Student{Id=4,Name="Frank",Surname="Sinatra",Age=18,City="Amsterdam",StudentNumber=53},
-            //    new Student{Id=5,Name="Elton",Surname="John",Age=23,City="Stockholm",StudentNumber=535},
-            //};
-
+        {           
             List<Student> Students = DataProvider.GetAllStudents();
 
             Student std = Students.Where(x => x.Id == ID).FirstOrDefault();        
@@ -108,7 +109,7 @@ namespace ModalAndCheckox.Controllers
             else
             {               
                 return Json(new {isSuccess=false});
-            }           
+            }         
                         
 
         }

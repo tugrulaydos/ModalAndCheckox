@@ -2,47 +2,59 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
 
 <div class="container">
     <div class="row mt-1">
-
         <div class="col">
-
-            <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#myModal">
-
-                Open
-
-            </button>
-
+            <button type="button" class="btn btn-dark" id="addData">Add Data</button>
             <div class="modal fade" tabindex="-1" id="myModal"
-            aria-labelledby="Exitlabel" aria-hidden="true"
-            data-bs-backdrop="static" data-bs-keyboard="false">
-                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable modal-lg
-                 modal-fullscreen-sm-down">
+                 aria-labelledby="Exitlabel" aria-hidden="true"
+                 data-bs-backdrop="static" data-bs-keyboard="false">
+                <div class="modal-dialog modal-dialog-centered modal-lg modal-fullscreen-sm-down">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="ExitLabel">İşlem Bilgisi</h5>
+                            <h5 class="modal-title" id="ExitLabel">Please Enter the Data Correctly."</h5>
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="kapat"></button>
-
                         </div>
-                        <div class="modal-body px-4">                      
-
-                            <form>
-                                <div class="form-group">
-                                    <label for="sender-name" class="col-form-label">Name Surname</label>
-                                    <input type="text" class="form-control" id="sender-name">
+                        <div class="modal-body px-2">
+                            
+                                <form>
+                                <div class="form-group row">
+                                    <label for="ID" class="col-sm-2 col-form-label">ID</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control" id="ID">
+                                    </div>
                                 </div>
-                                <div class="form-group">
-                                    <label for="message-text" class="col-form-label">Message:</label>
-                                    <textarea class="form-control" id="message-text"></textarea>
-                                </div>
-                            </form>
+                                    <div class="form-group row">
+                                        <label for="name" class="col-sm-2 col-form-label">Name</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="name">
+                                        </div>
+                                    </div>
 
-                         
+                                    <div class="form-group row">
+                                        <label for="surname" class="col-sm-2 col-form-label">Surname</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="surname">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="city" class="col-sm-2 col-form-label">City</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="city">
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        <label for="age" class="col-sm-2 col-form-label">Age</label>
+                                        <div class="col-sm-10">
+                                            <input type="text" class="form-control" id="age">
+                                        </div>
+                                    </div>
+                                </form>
+                            
                         </div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-dark" data-bs-dismiss="modal">Cancel</button>
@@ -58,41 +70,123 @@
 
 
 
+
 @section Scripts
 {
    
 
+ 
+
     <script>
-
         $(document).ready(function () {
-            debugger;
-            $("#btn-send").click(function () {
+            
+            $("#addData").click(function () {
+                debugger;
 
-                var userdata =
-                {
-                    name: "12",
-                    message: "12"
-                };
+                Swal.fire({
+                    title: "What Do You Want To Add?",
+                    showDenyButton: true,
+                    showCancelButton: true,
+                    confirmButtonText: "Teacher",
+                    denyButtonText: `Student`
+                }).then((result) => {
+                    /* Read more about isConfirmed, isDenied below */
+                    if (result.isConfirmed) {                 
+                                                  
+                            $('#myModal').modal('toggle');
 
+                            $("#btn-send").click(function()
+                            {
+                                var personinfo = {}
+                                personinfo.Id = $("#ID").val();
+                                personinfo.name = $("#name").val();
+                                personinfo.surname = $("#surname").val();
+                                personinfo.age =  $("#age").val();
+                                personinfo.city = $("#city").val();
+                                personinfo.isStudent = false
 
-                $.ajax({
-                    url: '/Home/Index',
-                    type: 'POST',
-                    dataType: 'json',
-                    data: JSON.stringify(userdata),
+                                 $.ajax({
+                                    url: '/Home/Index',
+                                    type: 'POST',
+                                    dataType: 'json',
+                                    data:personinfo,
 
-                    success: function (response) {
+                                    success: function (response)
+                                    {
+                                        if(response.isSuccess)
+                                        {
+                                          Swal.fire("Saved!", "", "success"); 
+                                        }
+                                        else
+                                        {
+                                        Swal.fire("Changes are not saved", "", "info");
+                                        }                                      
+                                    }
 
+                                 });
 
+                            });                                          
+                                                                         
+                        
+                                              
+                    } else if (result.isDenied) {
+                        $('#myModal').modal('toggle');
 
+                        $("#btn-send").click(function () {
+                            var personinfo = {}
+                            personinfo.Id = $("#ID").val();
+                            personinfo.name = $("#name").val();
+                            personinfo.surname = $("#surname").val();
+                            personinfo.age = $("#age").val();
+                            personinfo.city = $("#city").val();
+                            personinfo.isStudent = true
 
+                            $.ajax({
+                                url: '/Home/Index',
+                                type: 'POST',
+                                dataType: 'json',
+                                data: personinfo,
+
+                                success: function (response) {
+                                    if (response.isSuccess) {
+                                        Swal.fire("Saved!", "", "success");
+                                    }
+                                    else {
+                                        Swal.fire("Changes are not saved", "", "info");
+                                    }
+                              
+                                }
+
+                            });
+
+                        });
+                     
                     }
-
                 });
+
+
+                //$.ajax({
+                //    url: '/Home/Index',
+                //    type: 'POST',
+                //    dataType: 'json',
+                //    data: JSON.stringify(userdata),
+
+                //    success: function (response) {
+
+
+
+
+                //    }
+
+                //});
 
             });
 
         });
+
+
+
+        
     </script>
 
 

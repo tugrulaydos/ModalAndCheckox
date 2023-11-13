@@ -12,12 +12,11 @@
 <div>
     <input type="text" placeholder="Please Write An ID" id="StudentID"/>
     <br />
-    <input type="submit" id="btnSend" />
+    <input type="submit" id="btnSend" value="Send"/>
 </div>
 <div>
     <p>Student Name : <strong id="stdname"></strong></p>
     <p>Student Surname : <strong id="stdsurname"></strong></p>
-    <p>Student Number : <strong id="stdnumber"></strong></p>
     <p>Student Age : <strong id="stdage"></strong></p>
     <p>Student City : <strong id="stdcity"></strong></p>
 </div>
@@ -44,8 +43,7 @@
                         if (data.isSuccess) {
                             $("#stdname").html(data.std.name),
                                 $("#stdsurname").html(data.std.surname),
-                                $("#stdage").html(data.std.age),
-                                $("#stdnumber").html(data.std.studentNumber),
+                                $("#stdage").html(data.std.age),                               
                                 $("#stdcity").html(data.std.city)
 
                         }

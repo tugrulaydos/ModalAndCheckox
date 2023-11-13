@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "StudentTeachers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -8,7 +7,7 @@
 @model StudentTeacherVM
 
 @section Heads
-{
+    {
     <style>
         table {
             font-family: arial, sans-serif;
@@ -60,21 +59,21 @@
                                                 <div class="card-body card-bodyscale">
                                                     <h5 class="card-title">Teachers</h5>
 
-                                                    @foreach(var item in Model.teachers)
+                                                    @foreach (var item in Model.teachers)
                                                     {
                                                         <div class="row">
 
                                                             <div class="col-1">
-                                                                <input type="checkbox" class="form-check-input" checked value="@item.Id" id="NameCheckBoxteacher@(item.Id)"/>
+                                                                <input type="checkbox" class="form-check-input" checked value="@item.Id" id="NameCheckBoxteacher@(item.Id)" />
                                                             </div>
 
                                                             <div class="col-11">
                                                                 <label for="NameCheckBoxteacher@(item.Id)">@item.Name @item.Surname</label><br>
                                                             </div>
 
-                                                        </div>                                                        
+                                                        </div>
                                                     }
-                                                  
+
 
                                                 </div>
                                             </div>
@@ -91,7 +90,7 @@
                                                     {
                                                         <div class="row">
                                                             <div class="col-1">
-                                                                <input type="checkbox" class="form-check-input" checked value="@item.Id" id="EmailCheckBox@(item.Id)"/>
+                                                                <input type="checkbox" class="form-check-input" checked value="@item.Id" id="EmailCheckBox@(item.Id)" />
                                                             </div>
                                                             <div class="col-11">
                                                                 <label for="EmailCheckBox@(item.Id)">@item.Name @item.Surname</label><br>
@@ -133,14 +132,10 @@
 <br />
 
 <div class="container">
-    <div class="row" id="teachers" style="margin-bottom:30px;" >
-
-
+    <div class="row" id="teachers" style="margin-bottom:30px;">
     </div>
 
     <div class="row" id="students" style="margin-bottom:30px;">
-
-
     </div>
 
 </div>
@@ -149,22 +144,22 @@
 
 @section Scripts {
     <script>
-     
+
         $(document).ready(function () {
             $("#btnSend").click(function () {
 
-                
+
                 var dataModel =
                 {
-                    studentIDs:[],
-                    teacherIDs:[]
+                    studentIDs: [],
+                    teacherIDs: []
                 };
-              
 
-                $('#studentCheckBox :checked').each(function(){
 
-                    dataModel.studentIDs.push($(this).val());              
-                
+                $('#studentCheckBox :checked').each(function () {
+
+                    dataModel.studentIDs.push($(this).val());
+
                 });
 
 
@@ -180,70 +175,63 @@
                     url: '/Home/StudentTeachers',
                     type: 'POST',
                     contentType: 'application/json',
-                    data:JSON.stringify(dataModel),
+                    data: JSON.stringify(dataModel),
                     success: function (response) {
 
-                        if(response.isSuccess)
-                        {                         
-                                                          
 
-                                var t = response.value.teachers;
-                                var s = response.value.students;
-                                
-                                if(t.length>0)  //teacher
-                                {   
-                                    var teachers = '<table>' + '<tr><th colspan="4">Teachers</th></tr>'
-                                        '<tr><th>Name</th><th>Surname</th><th>City</th><th>Age</th></tr>';
-                                    for (var i = 0; i < t.length; i++) {
+                        var t = response.value.teachers;
+                        var s = response.value.students;
 
-                                        teachers += '<tr><td>' + t[i].name+ '</td><td>'+t[i].surname+'</td><td>'+t[i].city+'</td><td>'+t[i].age+'</td></tr>';
-                                    }
-
-                                    teachers += '<table>';
-
-                                    $("#teachers").html(teachers);
-
-                                }
-
-                                if(s.length>0) //student
-                                {
-                                    var students = '<table>' + '<tr><th colspan="4">Students</th></tr>'
-                                        '<tr><th>Name</th><th>Surname</th><th>City</th><th>Age</th></tr>';
-                                        
-                                    for(var i=0;i<s.length;i++)
-                                    {
-                                        students += '<tr><td>' + s[i].name + '</td><td>' + s[i].surname + '</td><td>' + s[i].city + '</td><td>' + s[i].age + '</td></tr>';
-                                    }
-
-                                    students += '<table>';
-
-                                    $("#students").html(students);                                    
-
-
-                                }
-
-                              
-
-                                
-
-
-                                
-                            
-                            
-
-
-
-                        }
-                        else
+                        if (t.length > 0)  //teacher
                         {
-                            Swal.fire({
-                                icon: 'error',
-                                title: 'Oops...',
-                                text: 'Nothing is selected.!',
-                                footer: 'Please make at least one selection.'
-                            });
+                            var teachers = '<table>' + '<tr><th colspan="4">Teachers</th></tr>'+
+                            '<tr><td>Name</td><td>Surname</td><td>City</td><td>Age</td></tr>';
+                            for (var i = 0; i < t.length; i++) {
+
+                                teachers += '<tr><td>' + t[i].name + '</td><td>' + t[i].surname + '</td><td>' + t[i].city + '</td><td>' + t[i].age + '</td></tr>';
+                            }
+
+                            teachers += '<table>';
+
+                            $("#teachers").html(teachers);
 
                         }
+                        else {
+                            $("#teachers").html("");
+                        }
+
+                        if (s.length > 0) //student
+                        {
+                            var students = '<table>' + '<tr><th colspan="4">Students</th></tr>'+
+                            '<tr><td>Name</td><td>Surname</td><td>City</td><td>Age</td></tr>';
+
+                            for (var i = 0; i < s.length; i++) {
+                                students += '<tr><td>' + s[i].name + '</td><td>' + s[i].surname + '</td><td>' + s[i].city + '</td><td>' + s[i].age + '</td></tr>';
+                            }
+
+                            students += '<table>';
+
+                            $("#students").html(students);
+
+
+                        }
+                        else {
+                            $("#students").html("");
+                        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -260,5 +248,5 @@
 
     </script>
 
-    
+
 }
