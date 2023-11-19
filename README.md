@@ -24,7 +24,7 @@ You can easily clone the project and review the code.
 
 
 ```
-$ npm install --save @github/clipboard-copy-element
+https://github.com/tugrulaydos/ModalAndCheckox.git
 ```
 
 
