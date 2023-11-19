@@ -8,5 +8,8 @@ In this project, you can add teachers and students, list the ones you want in a 
 ![3-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/974a5a21-5aca-436f-b8fb-f315039406e8)
 
 # Built With
-
-
+SweetAlert2, Ajax, Modal-Popup, and Jquery were used in this project. Also used were the below technologies.
+https://user-images.githubusercontent.com/25181517/192158954-f88b5814-d510-4564-b285-dff7d6400dad.png
+https://user-images.githubusercontent.com/25181517/183898674-75a4a1b1-f960-4ea9-abcb-637170a00a75.png
+https://user-images.githubusercontent.com/25181517/183898054-b3d693d4-dafb-4808-a509-bab54cf5de34.png
+https://user-images.githubusercontent.com/25181517/117447155-6a868a00-af3d-11eb-9cfe-245df15c9f3f.png
