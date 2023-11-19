@@ -1,7 +1,8 @@
 # About The Project
 In this project, you can add teachers and students, list the ones you want in a table, and access the information of any student.
 #### Adding Student Or Teacher
-![1-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/97998c93-9503-4cb7-9705-d8a0f47afedb)
+![1-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/99e5f532-770c-44b6-8456-c14e15780535)
+
 #### Listing Students And Teachers In A Table
 ![2-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/9aa17cbd-57d3-44bd-a112-55d68b48105a)
 #### Access The Information Of Any Student
