@@ -20,10 +20,9 @@ SweetAlert2, Ajax, Modal-Popup, and Jquery were used in this project. Also used 
 </table>
 
 # Installation
-[You can easily clone the project and review the code.](https://github.com/tugrulaydos/ModalAndCheckox.git)
-[arbitrary case-insensitive reference text]: https://www.mozilla.org
-[1]: http://slashdot.org
-[link text itself]: http://www.reddit.com
+You can easily clone the project and review the code. 
+<https://github.com/tugrulaydos/ModalAndCheckox.git>
+
 
 
 
