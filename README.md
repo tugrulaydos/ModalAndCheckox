@@ -4,9 +4,11 @@ In this project, you can add teachers and students, list the ones you want in a 
 ![1-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/99e5f532-770c-44b6-8456-c14e15780535)
 
 #### Listing Students And Teachers In A Table
-![2-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/9aa17cbd-57d3-44bd-a112-55d68b48105a)
+![2-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/9da07448-1708-46b4-8eab-029c7e34907e)
+
 #### Access The Information Of Any Student
-![3-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/974a5a21-5aca-436f-b8fb-f315039406e8)
+![3-gif](https://github.com/tugrulaydos/ModalAndCheckox/assets/62428662/00c0b6da-f049-411e-a41f-553de17eff8a)
+
 
 # Built With
 SweetAlert2, Ajax, Modal-Popup, and Jquery were used in this project. Also used were the below technologies.
