@@ -21,7 +21,11 @@ SweetAlert2, Ajax, Modal-Popup, and Jquery were used in this project. Also used 
 
 # Installation
 You can easily clone the project and review the code. 
-<https://github.com/tugrulaydos/ModalAndCheckox.git>
+
+
+```
+$ npm install --save @github/clipboard-copy-element
+```
 
 
 
